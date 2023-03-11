@@ -140,7 +140,6 @@ func SJFSchedule(w io.Writer, title string, processes []Process) {
 	)
 
 	for i := range processes {
-		// Find the process with the shortest burst duration
 		shortestIdx := i
 		for j := i + 1; j < len(processes); j++ {
 			if processes[j].ArrivalTime <= serviceTime && processes[j].BurstDuration < processes[shortestIdx].BurstDuration {
@@ -148,7 +147,6 @@ func SJFSchedule(w io.Writer, title string, processes []Process) {
 			}
 		}
 
-		// Swap the current process with the shortest one
 		if i != shortestIdx {
 			processes[i], processes[shortestIdx] = processes[shortestIdx], processes[i]
 		}
@@ -207,7 +205,6 @@ func SJFPrioritySchedule(w io.Writer, title string, processes []Process) {
 	)
 
 	for i := range processes {
-		// Find the process with the shortest burst duration and highest priority
 		shortestIdx := i
 		for j := i + 1; j < len(processes); j++ {
 			if processes[j].ArrivalTime <= serviceTime {
@@ -218,8 +215,6 @@ func SJFPrioritySchedule(w io.Writer, title string, processes []Process) {
 				}
 			}
 		}
-
-		// Swap the current process with the shortest one
 		if i != shortestIdx {
 			processes[i], processes[shortestIdx] = processes[shortestIdx], processes[i]
 		}
